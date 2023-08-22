@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-# This workflow will initiate a Veracode Static Analysis Pipeline scan, return a results.json and convert to SARIF for upload as a code scanning alert
+# This workflow will initiate a Veracode Static Analysis Pipeline scan, return a veracode_result.json and convert to SARIF for upload as a code scanning alert
 
 name: Veracode Static Analysis Pipeline Scan
 
@@ -34,7 +34,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it and copies all sources into ZIP file for submitting for analysis. Replace this section with your applications build steps
     - uses: actions/checkout@v3
       with:
-        repository: ''
+        repository: 'https://github.com/Newgen-Software-Technologies-Ltd/devopsPOC'
 
     - run: zip -r veracode-scan-target.zip ./
 
@@ -52,7 +52,7 @@ jobs:
       id: convert
       uses: veracode/veracode-pipeline-scan-results-to-sarif@ff08ae5b45d5384cb4679932f184c013d34da9be
       with:
-        pipeline-results-json: results.json
+        pipeline-results-json: veracode_result.json
     - uses: github/codeql-action/upload-sarif@v2
       with:
         # Path to SARIF file relative to the root of the repository
