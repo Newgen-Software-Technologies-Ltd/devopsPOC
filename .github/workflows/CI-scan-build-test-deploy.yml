@@ -87,13 +87,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run SOOS DAST Scan
-        uses: soos-io/soos-dast-github-action@3e71b27756f4ed77d7ad3c0ad92afddb47a40e4d # Use latest version from https://github.com/marketplace/actions/soos-dast
+        uses: soos-io/soos-dast-github-action@v1.2.5 # Use latest version from https://github.com/marketplace/actions/soos-dast
         with:
           client_id: ${{ secrets.SOOS_CLIENT_ID }}
           api_key: ${{ secrets.SOOS_API_KEY }}
           project_name: "devopsPOC"
           scan_mode: "baseline"
-          target_url: "https://www.example.com/"
+          #target_url: "https://www.example.com/"
           output_format: "sarif"
       - name: Upload SOOS DAST SARIF Report
         uses: github/codeql-action/upload-sarif@v2
